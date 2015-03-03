@@ -39,6 +39,8 @@ private:
   float x; //absis
   float y; //ordinat
   float z;
+  float max; // nilai maksimum
+  float min; // nilai minimum
 };
 
 #endif
