@@ -136,3 +136,15 @@ float closest(Point P[], int n)
     // Use recursive function closestUtil() to find the smallest distance
     return closestUtil(P, n);
 }
+
+int main()
+{	
+cout << "Masukkan nilai N" << N << "\n";
+    Point randomPoint(n,x,y,z);
+    int n = sizeof(P) / sizeof(P[0]);
+    cout << "Jarak terkecil antar titik adalah %f "<< closest(P, n)) << "\n";
+	cout << "x : " << x << "y : " << y << "z : " << z << "\n\n\n";
+	cout << "Banyak operasi perhitungan : " << countEu(dist);
+	
+    return 0;
+}
