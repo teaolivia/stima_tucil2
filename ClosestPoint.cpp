@@ -42,15 +42,21 @@ float dist(Point p1, Point p2)
 				(p1.z - p2.z)*(p1.z - p2.z)
                );
 }
+
+int countEu(int n) // menghitung jumlah pemakaian operasi Eucledian
+{
+	int temp; // temporary untuk menyimpan operasi eucledian
+	
+}
  
  // Generate Point random
  void randomPoint(int n, Point P){
 	 srand(time(NULL));
 	 for(int i = 0; i < n; i++){
 		 // generate n koordinat random
-		float P.x = rand() % ( 1001 - ( - 1000) + 2000);
-		float P.y = rand() % ( 1001 - ( - 1000) + 2000);
-		float P.z = rand() % ( 1001 - ( - 1000) + 2000);
+		float P.x = rand() % ( 501 - ( - 500) + 1000);
+		float P.y = rand() % ( 501 - ( - 500) + 1000);
+		float P.z = rand() % ( 501 - ( - 500) + 1000);
 		
 		std::cout << P.x << P.y << P.z << "\n\n\n";
 	 }
@@ -72,6 +78,7 @@ float bruteForce(Point P[], int n)
 float min(float x, float y)
 {
     return (x < y)? x : y;
+    // bantuin dong Bo
 }
  
  
