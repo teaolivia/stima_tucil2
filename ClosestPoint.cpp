@@ -5,9 +5,6 @@
 #include <cstdlib>
 #include <time.h>
 
-#define ValMax 100
-#define ValMin -100
-
 // tipe untuk menentukan lokasi titik dalam bidang 3D
 struct Point
 {
