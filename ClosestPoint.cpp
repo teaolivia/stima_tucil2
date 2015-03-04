@@ -71,20 +71,16 @@ float min(float x, float y)
 }
  
  
-// A utility function to find the distance beween the closest points of
-// strip of given size. All points in strip[] are sorted accordint to
-// y coordinate. They all have an upper bound on minimum distance as d.
-// Note that this method seems to be a O(n^2) method, but it's a O(n)
-// method as the inner loop runs at most 6 times
+// mencari jarak di strip dengan metode O(n) dan O(n^2)
 float stripClosest(Point strip[], int size, float d)
 {
-    float min = d;  // Initialize the minimum distance as d
+    float min = d;  // Inisiasi jarak minimal d
  
     qsort(strip, size, sizeof(Point), compareY); 
  
-    // Pick all points one by one and try the next points till the difference
-    // between y coordinates is smaller than d.
-    // This is a proven fact that this loop runs at most 6 times
+    // Ambil satu per satu sampai terdapat perbedaan
+    // antara koordinat y lebih kecil daripada d
+    // bukti bahwa loop akan melakukan run sebanyak 6 kali
     for (int i = 0; i < size; ++i)
         for (int j = i+1; j < size && (strip[j].y - strip[i].y) < min; ++j)
             if (dist(strip[i],strip[j]) < min)
