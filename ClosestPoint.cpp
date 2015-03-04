@@ -58,7 +58,6 @@ float bruteForce(Point P[], int n)
     float min = FLT_MAX;
     for (int i = 0; i < n; ++i)
         for (int j = i+1; j < n; ++j)
-			for (int k = i+1)
             if (dist(P[i], P[j]) < min)
                 min = dist(P[i], P[j]);
     return min;
@@ -89,29 +88,28 @@ float stripClosest(Point strip[], int size, float d)
     return min;
 }
  
-// A recursive function to find the smallest distance. The array P contains
-// all points sorted according to x coordinate
+// Fungsi rekursif (Divide and Conquer)untuk mencari jarak terdekat. Array P mengandung
+// semua titik tersusun menurut koordinat x
 float closestUtil(Point P[], int n)
 {
-    // If there are 2 or 3 points, then use brute force
+    // Jika ada dua dan tiga poin, pakai brute force
     if (n <= 3)
         return bruteForce(P, n);
  
-    // Find the middle point
+    // cari pivot
     int mid = n/2;
     Point midPoint = P[mid];
  
-    // Consider the vertical line passing through the middle point
-    // calculate the smallest distance dl on left of middle point and
-    // dr on right side
+    // Asumsikan terdapat garis vertikal melewati titik tengah (pivot)
+    // hitung jarak terdekat kiri dl dan kanan dr
     float dl = closestUtil(P, mid);
     float dr = closestUtil(P + mid, n-mid);
  
-    // Find the smaller of two distances
+    // tentukan mana yang paling kecil di antara kedua nilai jarak
     float d = min(dl, dr);
  
-    // Build an array strip[] that contains points close (closer than d)
-    // to the line passing through the middle point
+    // Buat array strip[] yang mengandung titik terdekat (lebih dekat dari d)
+    // terhadap garis yang memotong pivot
     Point strip[n];
     int j = 0;
     for (int i = 0; i < n; i++)
