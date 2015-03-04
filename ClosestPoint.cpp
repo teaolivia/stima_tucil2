@@ -5,6 +5,9 @@
 #include <cstdlib>
 #include <time.h>
 
+#define ValMax 100
+#define ValMin -100
+
 // tipe untuk menentukan lokasi titik dalam bidang 3D
 struct Point
 {
@@ -45,9 +48,11 @@ float dist(Point p1, Point p2)
 	 srand(time(NULL));
 	 for(int i = 0; i < n; i++){
 		 // generate n koordinat random
-		float P.x = rand() % n;
-		float P.y = rand() % n;
-		float P.z = rand() % n;
+		float P.x = rand() % ( 1001 - ( - 1000) + 2000);
+		float P.y = rand() % ( 1001 - ( - 1000) + 2000);
+		float P.z = rand() % ( 1001 - ( - 1000) + 2000);
+		
+		std::cout << P.x << P.y << P.z << "\n\n\n";
 	 }
  }
  
@@ -133,13 +138,11 @@ float closest(Point P[], int n)
 
 int main()
 {	
-	int n; // input untuk ukuran array
-	Point P;
 	cout << "Masukkan nilai N" << n << "\n";
-    randomPoint(n,P.x,P.y,P.z);
+    Point P[] = randomPoint(n,P.x,P.y,P.z);
     int n = sizeof(P) / sizeof(P[0]);
     cout << "Jarak terkecil antar titik adalah %f "<< closest(P, n)) << "\n";
-	cout << "x : " << P.x << "y : " << P.y << "z : " << P.z << "\n\n\n";
+	cout << "x : " << randomPoint(P.x)<< "y : " << randomPoint(P.y)<< "z : " << randomPoint(P.z) << "\n\n\n";
 //	cout << "Banyak operasi perhitungan : " << countEu(dist);
 	
     return 0;
