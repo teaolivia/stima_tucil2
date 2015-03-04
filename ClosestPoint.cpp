@@ -3,7 +3,7 @@
 #include <cmath>
 #include <iostream>
 #include <cstdlib>
-#include <random>
+#include <time.h>
 
 // tipe untuk menentukan lokasi titik dalam bidang 3D
 struct Point
@@ -41,13 +41,13 @@ float dist(Point p1, Point p2)
 }
  
  // Generate Point random
- void randomPoint(int n, float x, float y, float z){
+ void randomPoint(int n, Point P){
 	 srand(time(NULL));
 	 for(int i = 0; i < n; i++){
 		 // generate n koordinat random
-		float x = rand() % n;
-		float y = rand() % n;
-		float z = rand() % n;
+		float P.x = rand() % n;
+		float P.y = rand() % n;
+		float P.z = rand() % n;
 	 }
  }
  
@@ -116,29 +116,31 @@ float closestUtil(Point P[], int n)
         if (abs(P[i].x - midPoint.x) < d)
             strip[j] = P[i], j++;
  
-    // Find the closest points in strip.  Return the minimum of d and closest
-    // distance is strip[]
+    // Mencari poin terdekat di strip.
+    // Mengembalikan nilai d minimum dan jarak minimal di dalam strip[]
     return min(d, stripClosest(strip, j, d) );
 }
  
-// The main functin that finds the smallest distance
-// This method mainly uses closestUtil()
+// Fungsi utama yang menemukan jarak terkecil
+// Memanggil closestUtil()
 float closest(Point P[], int n)
 {
     qsort(P, n, sizeof(Point), compareX);
  
-    // Use recursive function closestUtil() to find the smallest distance
+    // Memakai fungsi rekursif closestUtil() untuk menemukan jarak terdekat
     return closestUtil(P, n);
 }
 
 int main()
 {	
-cout << "Masukkan nilai N" << N << "\n";
-    Point randomPoint(n,x,y,z);
+	int n; // input untuk ukuran array
+	Point P;
+	cout << "Masukkan nilai N" << n << "\n";
+    randomPoint(n,P.x,P.y,P.z);
     int n = sizeof(P) / sizeof(P[0]);
     cout << "Jarak terkecil antar titik adalah %f "<< closest(P, n)) << "\n";
-	cout << "x : " << x << "y : " << y << "z : " << z << "\n\n\n";
-	cout << "Banyak operasi perhitungan : " << countEu(dist);
+	cout << "x : " << P.x << "y : " << P.y << "z : " << P.z << "\n\n\n";
+//	cout << "Banyak operasi perhitungan : " << countEu(dist);
 	
     return 0;
 }
