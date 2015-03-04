@@ -1,54 +1,70 @@
-// A divide and conquer program in C/C++ to find the smallest distance from a
-// given set of points.
- 
-#include <stdio.h>
-#include <float.h>
-#include <stdlib.h>
-#include <math.h>
- 
-// A structure to represent a Point in 2D plane
+#include <cfloat>
+#include <cstdio>
+#include <cmath>
+#include <iostream>
+#include <cstdlib>
+#include <random>
+
+// tipe untuk menentukan lokasi titik dalam bidang 3D
 struct Point
 {
-    int x, y;
+    int x, y,z;
 };
  
-/* Following two functions are needed for library function qsort().
-   Refer: http://www.cplusplus.com/reference/clibrary/cstdlib/qsort/ */
- 
-// Needed to sort array of points according to X coordinate
+// Sort array dari titik X
 int compareX(const void* a, const void* b)
 {
     Point *p1 = (Point *)a,  *p2 = (Point *)b;
     return (p1->x - p2->x);
 }
-// Needed to sort array of points according to Y coordinate
+// Sort array dari titik Y
 int compareY(const void* a, const void* b)
 {
     Point *p1 = (Point *)a,   *p2 = (Point *)b;
     return (p1->y - p2->y);
 }
  
-// A utility function to find the distance between two points
+// Sort array dari titik Z
+int compareZ(const void* a, const void* b)
+{
+    Point *p1 = (Point *)a,   *p2 = (Point *)b;
+    return (p1->z - p2->z);
+}
+ 
+// Rumus mencari jarak antari tiga titik dalam dimensi tiga 
 float dist(Point p1, Point p2)
 {
     return sqrt( (p1.x - p2.x)*(p1.x - p2.x) +
-                 (p1.y - p2.y)*(p1.y - p2.y)
+                 (p1.y - p2.y)*(p1.y - p2.y) +
+				(p1.z - p2.z)*(p1.z - p2.z)
                );
 }
  
-// A Brute Force method to return the smallest distance between two points
-// in P[] of size n
+ // Generate Point random
+ void randomPoint(int n, float x, float y, float z){
+	 srand(time(NULL));
+	 for(int i = 0; i < n; i++){
+		 // generate n koordinat random
+		float x = rand() % n;
+		float y = rand() % n;
+		float z = rand() % n;
+	 }
+ }
+ 
+// Algoritma Brute Force untuk mengembalikan jarak terkecil antar dua titik
+// dalam larik P[] berukuran n
 float bruteForce(Point P[], int n)
 {
     float min = FLT_MAX;
     for (int i = 0; i < n; ++i)
         for (int j = i+1; j < n; ++j)
+			for (int k = i+1)
             if (dist(P[i], P[j]) < min)
                 min = dist(P[i], P[j]);
     return min;
 }
  
-// A utility function to find minimum of two float values
+// Fungsi untuk membandingkan dua float A utility function to find minimum of two float values
 float min(float x, float y)
 {
     return (x < y)? x : y;
@@ -119,13 +135,4 @@ float closest(Point P[], int n)
  
     // Use recursive function closestUtil() to find the smallest distance
     return closestUtil(P, n);
-}
- 
-// Driver program to test above functions
-int main()
-{
-    Point P[] = {{2, 3}, {12, 30}, {40, 50}, {5, 1}, {12, 10}, {3, 4}};
-    int n = sizeof(P) / sizeof(P[0]);
-    printf("The smallest distance is %f ", closest(P, n));
-    return 0;
 }
